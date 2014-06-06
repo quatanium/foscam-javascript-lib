@@ -1,9 +1,9 @@
 var FoscamModule = require('./foscam.js');
 
-HOST = '192.168.2.51';
-PORT = '88';
-USER = 'admin';
-PASS = 'foscam';
+HOST = '';
+PORT = '';
+USER = '';
+PASS = '';
 
 function check(cmd, result) {
     if( result && result.result == '0' ) {
@@ -22,4 +22,3 @@ mycam.getLocalAlarmRecordConfig(check);
 mycam.getH264FrmRefMode(check);
 
 mycam.getScheduleRecordConfig(check);
-

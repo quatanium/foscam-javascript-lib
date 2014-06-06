@@ -1,6 +1,6 @@
 var http = require('http'),
     querystring =require('querystring'),
-    xml2js = require('xml2js');
+    xml2js = require('xml2js'),
     iconv = require('iconv-lite');
 
 var parser = new xml2js.Parser();
@@ -248,8 +248,24 @@ var Foscam = {
             return foscam.executeCommand('setVideoStreamParam', params, callback);
         };
 
+        foscam.mirrorVideo = function(isMirror, callback) {
+            // Mirror Video
+            // 0 Not mirror
+            // 1 Mirror
+            params = {'isMirror': isMirror};
+            return foscam.executeCommand('mirrorVideo', params, callback);
+        };
+
+        foscam.flipVideo = function(isFlip, callback) {
+            // Flip video
+            // 0 Not flip
+            // 1 Flip
+            params = {'isFlip': isFlip};
+            return foscam.executeCommand('flipVideo', params, callback);
+        }
 
         // *************** User account ******************
+
         foscam.changeUserName = function(usrName, newUsrName, callback) {
             // Change user name.
             params = {
@@ -273,13 +289,29 @@ var Foscam = {
 
         // *************** Device manage *******************
 
-        foscam.setSystemTime = function(ntpServer, callback) {
+        foscam.setSystemTime = function(timeSource, ntpServer, dateFormat,
+                                        timeFormat, timeZone, isDst, dst,
+                                        year, mon, day, hour, minute, sec,
+                                        callback) {
             // Only support timeSource = 0(Get time from NTP server)
             // Supported ntpServer 'time.nist.gov',
             //                      'time.kriss.re.kr',
             //                      'time.windows.com',
             //                      'time.nuri.net',
-            params = {'timeSource': 0, 'ntpServer': ntpServer};
+            params = {'timeSource': timeSource,
+                      'ntpServer' : ntpServer,
+                      'dateFormat': dateFormat,
+                      'timeFormat': timeFormat,
+                      'timeZone'  : timeZone,
+                      'isDst'     : isDst,
+                      'dst'       : dst,
+                      'year'      : year,
+                      'mon'       : mon,
+                      'day'       : day,
+                      'hour'      : hour,
+                      'minute'    : minute,
+                      'sec'       : sec
+                     };
             return foscam.executeCommand('setSystemTime', params, callback);
         };
 
