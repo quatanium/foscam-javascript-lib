@@ -6,7 +6,7 @@ USER = '';
 PASS = '';
 
 function check(cmd, result) {
-    if( result && result.result == '0' ) {
+    if (result && result.result == '0') {
         console.log('TEST ' + cmd + '............ OK');
     } else {
         console.log('TEST ' + cmd + '............ Failed');
