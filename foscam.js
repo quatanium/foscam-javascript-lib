@@ -262,7 +262,11 @@ var Foscam = {
             // 1 Flip
             params = {'isFlip': isFlip};
             return foscam.executeCommand('flipVideo', params, callback);
-        }
+        };
+
+        foscam.getMirrorAndFlipSetting = function(callback) {
+            return foscam.executeCommand('getMirrorAndFlipSetting', null, callback);
+        };
 
         // *************** User account ******************
 
@@ -483,10 +487,19 @@ var Foscam = {
             // Get Record path: sd/ftp
             // cmd: getRecordPath
             // return args:
-            //     path: (0,SD), (1, FTP)
+            //     path: (0, SD), (2, FTP)
             //     free: free size(K)
             //     total: total size(K)
             return foscam.executeCommand('getRecordPath', null, callback);
+        };
+
+        foscam.setRecordPath = function(Path, callback){
+            // Set Record path: sd/ftp
+            // cmd: setRecordPath
+            // params:
+            //     path: (0, SD), (2, FTP)
+            params = {'Path': Path};
+            return foscam.executeCommand('setRecordPath', params, callback);
         };
 
         return foscam;

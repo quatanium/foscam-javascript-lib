@@ -16,7 +16,7 @@ Requirements
 
 Getting Started
 ---------------
-Every function takes a callback function as the last argument. 
+Every function takes a callback function as the last argument.
 The callback function is the only way to process results.
 
 ### Example
